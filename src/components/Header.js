@@ -14,7 +14,7 @@ export default function Header() {
           href="/"
           className="text-3xl font-extrabold bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent tracking-wide hover:scale-105 transition-transform"
         >
-          Premium Cloth
+          Urstyle.ke
         </Link>
 
         {/* Desktop Navigation */}
