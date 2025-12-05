@@ -1,6 +1,7 @@
 "use client";
 import Link from 'next/link';
 import { useState } from 'react';
+import { Menu, X, ShoppingCart, User } from 'lucide-react';
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -17,24 +18,24 @@ export default function Header() {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex gap-10 text-gray-700 font-semibold uppercase tracking-wider">
+        <nav className="hidden md:flex gap-10 text-gray-700 font-semibold uppercase tracking-wider items-center">
           <Link
             href="/products"
-            className="relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-gradient-to-r after:from-purple-500 after:to-pink-500 after:transition-all hover:after:w-full"
+            className="relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-gradient-to-r after:from-purple-500 after:to-pink-500 after:transition-all hover:after:w-full flex items-center gap-1"
           >
             Products
           </Link>
           <Link
             href="/cart"
-            className="relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-gradient-to-r after:from-purple-500 after:to-pink-500 after:transition-all hover:after:w-full"
+            className="relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-gradient-to-r after:from-purple-500 after:to-pink-500 after:transition-all hover:after:w-full flex items-center gap-1"
           >
-            Cart
+            <ShoppingCart className="w-5 h-5" /> Cart
           </Link>
           <Link
             href="/admin/login"
-            className="relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-gradient-to-r after:from-purple-500 after:to-pink-500 after:transition-all hover:after:w-full"
+            className="relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-gradient-to-r after:from-purple-500 after:to-pink-500 after:transition-all hover:after:w-full flex items-center gap-1"
           >
-            Admin
+            <User className="w-5 h-5" /> Admin
           </Link>
         </nav>
 
@@ -43,20 +44,7 @@ export default function Header() {
           className="md:hidden p-2 rounded hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-500"
           onClick={() => setMenuOpen(!menuOpen)}
         >
-          <svg
-            className="w-6 h-6 text-gray-700"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d={menuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
-            />
-          </svg>
+          {menuOpen ? <X className="w-6 h-6 text-gray-700" /> : <Menu className="w-6 h-6 text-gray-700" />}
         </button>
       </div>
 
@@ -64,9 +52,15 @@ export default function Header() {
       {menuOpen && (
         <nav className="md:hidden bg-white shadow-xl rounded-b-lg animate-slideDown">
           <div className="flex flex-col gap-4 p-6 text-gray-700 font-semibold uppercase tracking-wide">
-            <Link href="/products" className="hover:text-purple-600 transition" onClick={() => setMenuOpen(false)}>Products</Link>
-            <Link href="/cart" className="hover:text-purple-600 transition" onClick={() => setMenuOpen(false)}>Cart</Link>
-            <Link href="/admin/login" className="hover:text-purple-600 transition" onClick={() => setMenuOpen(false)}>Admin</Link>
+            <Link href="/products" className="hover:text-purple-600 transition flex items-center gap-2" onClick={() => setMenuOpen(false)}>
+              <Menu className="w-5 h-5" /> Products
+            </Link>
+            <Link href="/cart" className="hover:text-purple-600 transition flex items-center gap-2" onClick={() => setMenuOpen(false)}>
+              <ShoppingCart className="w-5 h-5" /> Cart
+            </Link>
+            <Link href="/admin/login" className="hover:text-purple-600 transition flex items-center gap-2" onClick={() => setMenuOpen(false)}>
+              <User className="w-5 h-5" /> Admin
+            </Link>
           </div>
         </nav>
       )}
