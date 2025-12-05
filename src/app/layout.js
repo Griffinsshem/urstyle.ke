@@ -5,8 +5,8 @@ import "./globals.css";
 
 const jost = Jost({
   subsets: ["latin"],
-  variable: "--font-jost", // optional CSS variable
-  display: "swap", // ensures smooth font loading
+  variable: "--font-jost",
+  display: "swap",
 });
 
 export const metadata = {
