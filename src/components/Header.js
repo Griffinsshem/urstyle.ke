@@ -1,7 +1,7 @@
 "use client";
 import Link from 'next/link';
 import { useState } from 'react';
-import { Menu, X, ShoppingCart, User } from 'lucide-react';
+import { Menu, X, ShoppingBag, ShoppingCart, User } from 'lucide-react';
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -10,11 +10,13 @@ export default function Header() {
     <header className="bg-white shadow-lg sticky top-0 z-50 transition-shadow duration-300">
       <div className="max-w-7xl mx-auto flex justify-between items-center p-4 md:p-6">
         {/* Brand */}
-        <Link
-          href="/"
-          className="text-3xl font-extrabold bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent tracking-wide hover:scale-105 transition-transform"
-        >
-          Urstyle.ke
+        <Link href="/" className="flex items-center gap-2 hover:scale-105 transition-transform">
+          {/* Icon with solid gradient */}
+          <ShoppingBag className="w-8 h-8 text-pink-500" />
+          {/* Gradient text for brand */}
+          <span className="text-3xl font-extrabold bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent tracking-wide">
+            Urstyle.ke
+          </span>
         </Link>
 
         {/* Desktop Navigation */}
