@@ -25,7 +25,7 @@ export default function Footer() {
           <h2 className="flex items-center gap-2 text-3xl font-extrabold bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent">
             Urstyle.ke
           </h2>
-          <p className="text-gray-600 mt-4 leading-relaxed text-sm">
+          <p className="text-gray-900 mt-4 leading-relaxed text-sm">
             Elevate your wardrobe with premium, hand-picked styles.
             Trusted by fashion-forward shoppers across Kenya.
           </p>
