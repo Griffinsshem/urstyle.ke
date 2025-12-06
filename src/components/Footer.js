@@ -105,17 +105,17 @@ export default function Footer() {
             Contact Us
           </h3>
 
-          <p className="flex items-center gap-2 text-gray-600 text-sm">
+          <p className="flex items-center gap-2 text-gray-900 font-semibold text-sm">
             <MapPin className="w-5 h-5 text-purple-500" />
             Nairobi, Kenya
           </p>
 
-          <p className="flex items-center gap-2 text-gray-600 text-sm mt-3">
+          <p className="flex items-center gap-2 text-gray-900 font-semibold text-sm mt-3">
             <Phone className="w-5 h-5 text-purple-500" />
             +254 700 000 000
           </p>
 
-          <p className="flex items-center gap-2 text-gray-600 text-sm mt-3">
+          <p className="flex items-center gap-2 text-gray-900 font-semibold text-sm mt-3">
             <Mail className="w-5 h-5 text-purple-500" />
             support@urstyle.ke
           </p>
