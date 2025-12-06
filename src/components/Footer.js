@@ -77,7 +77,7 @@ export default function Footer() {
             <HeartHandshake className="w-5 h-5 text-purple-500" />
             Support
           </h3>
-          <ul className="space-y-3 text-gray-600">
+          <ul className="space-y-3 text-gray-900 font-semibold">
             {[
               "FAQs",
               "Shipping & Delivery",
