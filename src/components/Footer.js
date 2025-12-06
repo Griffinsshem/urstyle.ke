@@ -122,7 +122,7 @@ export default function Footer() {
 
           {/* Newsletter */}
           <div className="mt-6">
-            <p className="text-gray-700 font-medium mb-2">Join our newsletter</p>
+            <p className="text-gray-900 font-medium mb-2">Join our newsletter</p>
             <div className="flex items-center bg-gray-100 rounded-full p-1 shadow-sm">
               <input
                 type="email"
