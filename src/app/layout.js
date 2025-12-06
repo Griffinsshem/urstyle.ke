@@ -1,5 +1,6 @@
 import { Jost } from "next/font/google";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import "./globals.css";
 
 
@@ -20,6 +21,7 @@ export default function RootLayout({ children }) {
       <body className={`${jost.variable} font-sans antialiased`}>
         <Header />
         <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );
