@@ -138,7 +138,7 @@ export default function Footer() {
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-gray-200 py-5 text-center text-gray-600 text-sm bg-gray-50">
+      <div className="border-t border-gray-200 py-5 text-center text-gray-900 font-semibold text-sm bg-gray-50">
         © {new Date().getFullYear()} Urstyle.ke — Premium Fashion Store. All Rights Reserved.
       </div>
     </footer>
