@@ -50,7 +50,7 @@ export default function Footer() {
             <Shirt className="w-5 h-5 text-purple-500" />
             Shop Categories
           </h3>
-          <ul className="space-y-3 text-gray-600">
+          <ul className="space-y-3 text-gray-900 font-semibold">
             {[
               "Men’s Fashion",
               "Women’s Fashion",
