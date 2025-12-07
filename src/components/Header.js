@@ -28,6 +28,12 @@ export default function Header() {
             Products
           </Link>
           <Link
+            href="/about"
+            className="relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-gradient-to-r after:from-purple-500 after:to-pink-500 after:transition-all hover:after:w-full flex items-center gap-1"
+          >
+            About
+          </Link>
+          <Link
             href="/cart"
             className="relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-gradient-to-r after:from-purple-500 after:to-pink-500 after:transition-all hover:after:w-full flex items-center gap-1"
           >
