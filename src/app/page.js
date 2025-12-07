@@ -27,6 +27,13 @@ export default function HomePage() {
           image="/images/jacket.jpg"
           category="Apparel"
         />
+        <ProductCard
+          id={4}
+          title="Wireless Headphones"
+          price={6999}
+          image="/images/headphones.jpg"
+          category="Electronics"
+        />
       </div>
     </main>
   );
