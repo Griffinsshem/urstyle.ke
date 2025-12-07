@@ -41,7 +41,7 @@ export default function ProductCard({ id, title, price, image, category }) {
 
       {/* Product Info */}
       <div className="p-4">
-        <p className="text-xs uppercase tracking-widest text-gray-500 mb-1">
+        <p className="text-xs uppercase tracking-widest text-gray-900 mb-1">
           {category}
         </p>
 
