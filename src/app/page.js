@@ -51,7 +51,7 @@ export default function Home() {
           <div className="flex-1 flex justify-center">
             <div className="relative">
               <img
-                src="/hero-model.png"
+                src="https://images.pexels.com/photos/26549228/pexels-photo-26549228.jpeg"
                 alt="Fashion Model"
                 className="w-[380px] rounded-2xl shadow-2xl"
               />
