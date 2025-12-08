@@ -53,7 +53,7 @@ export default function ProductsPage() {
       </h1>
 
       {/* Filters Section */}
-      <div className="bg-white shadow-lg rounded-2xl p-6 mb-12">
+      <div className="bg-white shadow-lg rounded-2xl p-6 mb-12 border-gray-900 border">
 
         {/* Search */}
         <div className="flex items-center gap-3 p-3 border rounded-xl mb-6 bg-gray-50">
