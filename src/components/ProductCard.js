@@ -8,7 +8,7 @@ export default function ProductCard({ id, title, price, image, category }) {
   const [isFav, setIsFav] = useState(false);
 
   return (
-    <div className="group relative bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border-pink-700 border-1">
+    <div className="group relative bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border-gray-900 border-1">
 
       {/* Product Image */}
       <div className="relative w-full h-72 overflow-hidden">
