@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+
 import {
   LayoutDashboard,
   PackagePlus,
@@ -12,20 +14,28 @@ import {
   Menu,
   X,
 } from "lucide-react";
+
 import ProtectedRoute from "@/components/ProtectedRoute";
 
 export default function AdminLayout({ children }) {
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
+
+  // ❗ Skip admin layout for login + logout
+  if (pathname === "/admin/login" || pathname === "/admin/logout") {
+    return <>{children}</>;
+  }
 
   return (
     <ProtectedRoute>
       <div className="min-h-screen flex bg-gray-50">
         {/* Sidebar */}
         <aside
-          className={`fixed md:static top-0 left-0 h-full w-72 bg-white shadow-xl 
-          border-r border-gray-200 z-50 transform transition-transform duration-300
-          ${open ? "translate-x-0" : "-translate-x-full md:translate-x-0"}
-        `}
+          className={`
+            fixed md:static top-0 left-0 h-full w-72 bg-white shadow-xl 
+            border-r border-gray-200 z-50 transform transition-transform duration-300
+            ${open ? "translate-x-0" : "-translate-x-full md:translate-x-0"}
+          `}
         >
           <div className="flex items-center justify-between px-6 py-5 border-b border-gray-200">
             <Link href="/" className="flex items-center gap-2">
@@ -34,11 +44,13 @@ export default function AdminLayout({ children }) {
               </span>
             </Link>
 
+            {/* Close Button Mobile */}
             <button className="md:hidden" onClick={() => setOpen(false)}>
               <X className="w-6 h-6 text-gray-700" />
             </button>
           </div>
 
+          {/* Sidebar Links */}
           <nav className="flex flex-col gap-1 px-4 mt-4">
             <MenuItem href="/admin" icon={<LayoutDashboard />} label="Dashboard" />
             <MenuItem href="/admin/products" icon={<Boxes />} label="Products" />
@@ -78,7 +90,8 @@ function MenuItem({ href, icon, label, isDanger }) {
   return (
     <Link
       href={href}
-      className={`flex items-center gap-3 p-3 rounded-xl font-medium transition
+      className={`
+        flex items-center gap-3 p-3 rounded-xl font-medium transition
         ${isDanger
           ? "text-red-600 hover:bg-red-50"
           : "text-gray-700 hover:bg-purple-50 hover:text-purple-700"}
