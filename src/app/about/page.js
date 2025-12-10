@@ -81,7 +81,7 @@ export default function AboutPage() {
             { title: "Ethical Production", desc: "Responsible sourcing and fair, transparent production." },
             { title: "Innovation", desc: "Tech-driven shopping, smart sizing, and modern styles." },
           ].map((val, i) => (
-            <div key={i} className="bg-gray-50 p-8 shadow-sm rounded-2xl border border-gray-100">
+            <div key={i} className="bg-gray-50 p-8 shadow-sm rounded-2xl border border-gray-900">
               <h3 className="font-bold text-xl mb-3">{val.title}</h3>
               <p className="text-gray-600">{val.desc}</p>
             </div>
@@ -149,7 +149,7 @@ function StatsSection() {
 
   return (
     <section className="bg-white py-20 px-6">
-      <div className="max-w-6xl mx-auto text-center">
+      <div className="max-w-6xl mx-auto text-center b">
         <h2 className="text-4xl font-bold text-gray-900 mb-10">Trusted by Thousands</h2>
 
         <div className="grid md:grid-cols-4 gap-8">
