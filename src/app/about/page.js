@@ -25,12 +25,12 @@ export default function AboutPage() {
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
             <h2 className="text-4xl font-bold mb-6 text-gray-900">Our Story</h2>
-            <p className="text-gray-600 leading-relaxed text-lg">
+            <p className="text-gray-900 font-base leading-relaxed text-lg">
               Founded in Kenya, Urstyle.ke was built on the belief that fashion should be
               expressive, accessible, and premium. We blend modern designs with African-inspired
               creativity, empowering individuals to look and feel exceptional every day.
             </p>
-            <p className="text-gray-600 leading-relaxed mt-4">
+            <p className="text-gray-900 font-base leading-relaxed mt-4">
               What started as a small passion project transformed into a full digital fashion
               brand serving customers nationwide with high-quality fabrics, smart sizing, and
               seamless online shopping.
