@@ -52,7 +52,7 @@ export default function AboutPage() {
       <section className="max-w-6xl mx-auto px-6 py-16 grid md:grid-cols-2 gap-10">
         <div className="p-10 bg-gray-50 border border-gray-200 rounded-2xl shadow-sm">
           <h3 className="text-3xl font-bold mb-4">Our Mission</h3>
-          <p className="text-gray-600 text-lg leading-relaxed">
+          <p className="text-gray-900 font-base text-lg leading-relaxed">
             To revolutionize Kenyan fashion through premium quality, ethical sourcing,
             and a seamless online shopping experience powered by intelligent technology.
           </p>
@@ -60,7 +60,7 @@ export default function AboutPage() {
 
         <div className="p-10 bg-gray-50 border border-gray-200 rounded-2xl shadow-sm">
           <h3 className="text-3xl font-bold mb-4">Our Vision</h3>
-          <p className="text-gray-600 text-lg leading-relaxed">
+          <p className="text-gray-900 font-base text-lg leading-relaxed">
             To be Kenya’s most trusted and trend-setting fashion brand—leading in quality,
             innovation, and customer satisfaction.
           </p>
