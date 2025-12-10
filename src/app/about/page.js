@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 export default function AboutPage() {
   return (
@@ -49,7 +50,6 @@ export default function AboutPage() {
 
       {/* MISSION + VISION */}
       <section className="max-w-6xl mx-auto px-6 py-16 grid md:grid-cols-2 gap-10">
-
         <div className="p-10 bg-gray-50 border border-gray-200 rounded-2xl shadow-sm">
           <h3 className="text-3xl font-bold mb-4">Our Mission</h3>
           <p className="text-gray-600 text-lg leading-relaxed">
@@ -66,6 +66,9 @@ export default function AboutPage() {
           </p>
         </div>
       </section>
+
+      {/* 🔥 STATS SECTION (Enhanced) */}
+      <StatsSection />
 
       {/* VALUES */}
       <section className="max-w-6xl mx-auto px-6 py-16">
@@ -135,6 +138,63 @@ export default function AboutPage() {
   );
 }
 
+
+function StatsSection() {
+  const stats = [
+    { label: "Happy Customers", value: 2500 },
+    { label: "Products Delivered", value: 12000 },
+    { label: "Premium Products", value: 850 },
+    { label: "Avg. Delivery Time", value: 24, suffix: " hrs" },
+  ];
+
+  return (
+    <section className="bg-white py-20 px-6">
+      <div className="max-w-6xl mx-auto text-center">
+        <h2 className="text-4xl font-bold text-gray-900 mb-10">Trusted by Thousands</h2>
+
+        <div className="grid md:grid-cols-4 gap-8">
+          {stats.map((s, i) => (
+            <StatCard key={i} {...s} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* Single Stat Card */
+function StatCard({ value, label, suffix = "" }) {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    let start = 0;
+    const end = value;
+    const duration = 1500; // 1.5 seconds
+    const increment = end / (duration / 16);
+
+    const counter = setInterval(() => {
+      start += increment;
+      if (start >= end) {
+        start = end;
+        clearInterval(counter);
+      }
+      setCount(Math.floor(start));
+    }, 16);
+
+    return () => clearInterval(counter);
+  }, [value]);
+
+  return (
+    <div className="p-8 bg-gray-50 border border-gray-200 rounded-2xl shadow-sm">
+      <h3 className="text-4xl font-extrabold text-purple-600">
+        {count.toLocaleString()}{suffix}
+      </h3>
+      <p className="text-gray-600 mt-2 text-lg">{label}</p>
+    </div>
+  );
+}
+
+/* Feature Card */
 function FeatureCard({ title, desc }) {
   return (
     <div className="bg-white p-8 shadow-sm rounded-2xl border border-gray-200">
