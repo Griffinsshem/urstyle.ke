@@ -22,8 +22,7 @@ export default function AdminLayout({ children }) {
       <div className="min-h-screen flex bg-gray-50">
         {/* Sidebar */}
         <aside
-          className={`
-          fixed md:static top-0 left-0 h-full w-72 bg-white shadow-xl 
+          className={`fixed md:static top-0 left-0 h-full w-72 bg-white shadow-xl 
           border-r border-gray-200 z-50 transform transition-transform duration-300
           ${open ? "translate-x-0" : "-translate-x-full md:translate-x-0"}
         `}
@@ -35,13 +34,11 @@ export default function AdminLayout({ children }) {
               </span>
             </Link>
 
-            {/* Close Button Mobile */}
             <button className="md:hidden" onClick={() => setOpen(false)}>
               <X className="w-6 h-6 text-gray-700" />
             </button>
           </div>
 
-          {/* Menu Items */}
           <nav className="flex flex-col gap-1 px-4 mt-4">
             <MenuItem href="/admin" icon={<LayoutDashboard />} label="Dashboard" />
             <MenuItem href="/admin/products" icon={<Boxes />} label="Products" />
@@ -66,12 +63,10 @@ export default function AdminLayout({ children }) {
 
         {/* Main Content */}
         <div className="flex-1 md:ml-72 p-6">
-          {/* Dashboard top bar */}
           <header className="bg-white p-4 shadow rounded-xl border border-gray-100 mb-6">
             <h1 className="text-2xl font-bold text-gray-800">Admin Dashboard</h1>
           </header>
 
-          {/* Page Content */}
           <main>{children}</main>
         </div>
       </div>
@@ -79,13 +74,11 @@ export default function AdminLayout({ children }) {
   );
 }
 
-/* Reusable Menu Component */
 function MenuItem({ href, icon, label, isDanger }) {
   return (
     <Link
       href={href}
-      className={`
-        flex items-center gap-3 p-3 rounded-xl font-medium transition
+      className={`flex items-center gap-3 p-3 rounded-xl font-medium transition
         ${isDanger
           ? "text-red-600 hover:bg-red-50"
           : "text-gray-700 hover:bg-purple-50 hover:text-purple-700"}
