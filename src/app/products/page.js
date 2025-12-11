@@ -101,20 +101,6 @@ export default function ProductsPage() {
             </select>
           </div>
 
-          {/* Price Range
-          <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-2">
-              Max Price — Ksh {priceRange}
-            </label>
-            <input
-              type="range"
-              min="500"
-              max="10000"
-              value={priceRange}
-              className="w-full accent-purple-600"
-              onChange={(e) => setPriceRange(Number(e.target.value))}
-            />
-          </div> */}
         </div>
       </div>
 
