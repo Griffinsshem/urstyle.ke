@@ -107,8 +107,12 @@ export default function AboutPage() {
         <h2 className="text-4xl font-bold text-center mb-12">Meet the Team</h2>
 
         <div className="flex justify-center">
-          <div className="bg-white rounded-2xl shadow-md p-6 text-center border max-w-xs w-full">
-            <div className="relative w-full h-64 rounded-xl overflow-hidden mb-4">
+          <div
+            className="bg-white rounded-3xl shadow-lg p-8 text-center border max-w-sm w-full
+                 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl
+                 animate-fadeIn"
+          >
+            <div className="relative w-full h-72 rounded-2xl overflow-hidden mb-6">
               <Image
                 src="https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg"
                 fill
@@ -116,11 +120,23 @@ export default function AboutPage() {
                 alt="Faith Chebet"
               />
             </div>
-            <h3 className="font-bold text-xl">Faith Chebet</h3>
-            <p className="text-gray-900 font-semibold mt-1">CEO</p>
+
+            <h3 className="font-bold text-2xl">Faith Chebet</h3>
+            <p className="text-gray-600 mt-1 text-lg">CEO</p>
           </div>
         </div>
       </section>
+
+      <style jsx>{`
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(10px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fadeIn {
+          animation: fadeIn 0.6s ease-in-out;
+        }
+      `}</style>
+
 
 
       {/* CTA SECTION */}
