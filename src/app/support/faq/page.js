@@ -59,7 +59,7 @@ export default function FAQPage() {
           return (
             <div
               key={index}
-              className="bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-md transition-all duration-200"
+              className="bg-white border border-gray-900 rounded-2xl shadow-sm hover:shadow-md transition-all duration-200"
             >
               {/* Accordion Header */}
               <button
@@ -76,13 +76,13 @@ export default function FAQPage() {
                 {isOpen ? (
                   <ChevronUp className="w-5 h-5 text-purple-600 transition" />
                 ) : (
-                  <ChevronDown className="w-5 h-5 text-gray-400 group-hover:text-purple-500 transition" />
+                  <ChevronDown className="w-5 h-5 text-gray-600 group-hover:text-purple-500 transition" />
                 )}
               </button>
 
               {/* Accordion Body */}
               {isOpen && (
-                <div className="px-6 pb-6 text-gray-600 leading-relaxed animate-fadeIn">
+                <div className="px-6 pb-6 text-gray-900 font-bold leading-relaxed animate-fadeIn">
                   {faq.answer}
                 </div>
               )}
