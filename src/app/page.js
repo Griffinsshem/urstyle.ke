@@ -24,7 +24,7 @@ export default function Home() {
               for the Modern Kenyan Lifestyle
             </h1>
 
-            <p className="text-gray-600 text-lg mb-10 max-w-xl">
+            <p className="text-gray-700 font-semibold text-lg mb-10 max-w-xl">
               Discover luxury wear curated for elegance, comfort, and style.
               Shop the latest arrivals and elevate your wardrobe.
             </p>
@@ -76,7 +76,7 @@ export default function Home() {
             <div className="bg-gray-50 hover:shadow-xl transition rounded-2xl p-10 text-center">
               <Shirt className="w-12 h-12 mx-auto mb-4 text-purple-600" />
               <h3 className="text-xl font-semibold mb-2">Men's Fashion</h3>
-              <p className="text-gray-500 text-sm">Classy, bold & modern wear.</p>
+              <p className="text-gray-900 font-semibold text-sm">Classy, bold & modern wear.</p>
             </div>
           </Link>
 
@@ -85,7 +85,7 @@ export default function Home() {
             <div className="bg-gray-50 hover:shadow-xl transition rounded-2xl p-10 text-center">
               <Sparkle className="w-12 h-12 mx-auto mb-4 text-pink-500" />
               <h3 className="text-xl font-semibold mb-2">Women's Fashion</h3>
-              <p className="text-gray-500 text-sm">Elegant, stylish & chic outfits.</p>
+              <p className="text-gray-900 font-semibold text-sm">Elegant, stylish & chic outfits.</p>
             </div>
           </Link>
 
@@ -94,7 +94,7 @@ export default function Home() {
             <div className="bg-gray-50 hover:shadow-xl transition rounded-2xl p-10 text-center">
               <ArrowRight className="w-12 h-12 mx-auto mb-4 text-purple-600" />
               <h3 className="text-xl font-semibold mb-2">New Arrivals</h3>
-              <p className="text-gray-500 text-sm">Fresh styles dropping weekly.</p>
+              <p className="text-gray-900 font-semibold text-sm">Fresh styles dropping weekly.</p>
             </div>
           </Link>
         </div>
