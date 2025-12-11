@@ -67,7 +67,7 @@ export default function CartPage() {
                     <h3 className="text-lg font-semibold text-gray-900">
                       {item.title}
                     </h3>
-                    <p className="text-gray-600 text-sm mt-1">
+                    <p className="text-red-600 font-bold text-sm mt-1">
                       KSh {item.price.toLocaleString()}
                     </p>
 
