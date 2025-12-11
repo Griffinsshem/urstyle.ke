@@ -9,7 +9,6 @@ import {
   Phone,
   ArrowRight,
   Shirt,
-  Wand2,
   ChevronRight,
   HeartHandshake,
   Info,
@@ -77,24 +76,57 @@ export default function Footer() {
             <HeartHandshake className="w-5 h-5 text-purple-500" />
             Support
           </h3>
+
           <ul className="space-y-3 text-gray-900 font-semibold">
-            {[
-              "FAQs",
-              "Shipping & Delivery",
-              "Returns Policy",
-              "Our Story",
-              "Terms & Conditions",
-            ].map((item, i) => (
-              <li key={i}>
-                <Link
-                  href="#"
-                  className="flex items-center gap-2 hover:text-purple-600 transition"
-                >
-                  <ChevronRight className="w-4 h-4 text-purple-500" />
-                  {item}
-                </Link>
-              </li>
-            ))}
+            <li>
+              <Link
+                href="/support/faq"
+                className="flex items-center gap-2 hover:text-purple-600 transition"
+              >
+                <ChevronRight className="w-4 h-4 text-purple-500" />
+                FAQs
+              </Link>
+            </li>
+
+            <li>
+              <Link
+                href="/support/shipping"
+                className="flex items-center gap-2 hover:text-purple-600 transition"
+              >
+                <ChevronRight className="w-4 h-4 text-purple-500" />
+                Shipping & Delivery
+              </Link>
+            </li>
+
+            <li>
+              <Link
+                href="/support/returns"
+                className="flex items-center gap-2 hover:text-purple-600 transition"
+              >
+                <ChevronRight className="w-4 h-4 text-purple-500" />
+                Returns Policy
+              </Link>
+            </li>
+
+            <li>
+              <Link
+                href="/support/story"
+                className="flex items-center gap-2 hover:text-purple-600 transition"
+              >
+                <ChevronRight className="w-4 h-4 text-purple-500" />
+                Our Story
+              </Link>
+            </li>
+
+            <li>
+              <Link
+                href="/support/terms"
+                className="flex items-center gap-2 hover:text-purple-600 transition"
+              >
+                <ChevronRight className="w-4 h-4 text-purple-500" />
+                Terms & Conditions
+              </Link>
+            </li>
           </ul>
         </div>
 
