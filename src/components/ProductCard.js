@@ -8,11 +8,7 @@ export default function ProductCard({ id, title, price, image, category }) {
 
   return (
     <div className="bg-white rounded-2xl shadow-lg border border-gray-200 hover:shadow-xl transition p-4 flex flex-col">
-      <img
-        src={image}
-        alt={title}
-        className="w-full h-60 object-cover rounded-xl"
-      />
+      <img src={image} alt={title} className="w-full h-60 object-cover rounded-xl" />
 
       <div className="mt-4 flex flex-col flex-grow">
         <h2 className="text-lg font-semibold text-gray-800">{title}</h2>
