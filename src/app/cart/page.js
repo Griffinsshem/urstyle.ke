@@ -1,45 +1,21 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Trash2 } from "lucide-react";
+import { useCartStore } from "@/store/useCartStore";
 
 export default function CartPage() {
-  const [cart, setCart] = useState([]);
+  const cart = useCartStore((state) => state.cart);
+  const removeItem = useCartStore((state) => state.removeItem);
+  const increaseQty = useCartStore((state) => state.increaseQty);
+  const decreaseQty = useCartStore((state) => state.decreaseQty);
 
-  useEffect(() => {
-    const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
-    setCart(savedCart);
-  }, []);
-
-  function updateCart(updatedCart) {
-    setCart(updatedCart);
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
-  }
-
-  function increaseQty(id) {
-    const updated = cart.map(item =>
-      item.id === id ? { ...item, qty: item.qty + 1 } : item
-    );
-    updateCart(updated);
-  }
-
-  function decreaseQty(id) {
-    const updated = cart
-      .map(item =>
-        item.id === id ? { ...item, qty: Math.max(item.qty - 1, 1) } : item
-      );
-    updateCart(updated);
-  }
-
-  function removeItem(id) {
-    const updated = cart.filter(item => item.id !== id);
-    updateCart(updated);
-  }
-
-  const subtotal = cart.reduce((acc, item) => acc + item.price * item.qty, 0);
-  const shipping = subtotal > 0 ? 250 : 0; // flat rate
+  const subtotal = cart.reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0
+  );
+  const shipping = subtotal > 0 ? 250 : 0;
   const total = subtotal + shipping;
 
   return (
@@ -73,7 +49,7 @@ export default function CartPage() {
             {/* CART ITEMS */}
             <div className="md:col-span-2 space-y-6">
 
-              {cart.map(item => (
+              {cart.map((item) => (
                 <div
                   key={item.id}
                   className="flex items-center gap-6 bg-white p-5 rounded-xl shadow border"
@@ -81,7 +57,7 @@ export default function CartPage() {
                   <div className="relative w-28 h-28 rounded-xl overflow-hidden">
                     <Image
                       src={item.image}
-                      alt={item.name}
+                      alt={item.title}
                       fill
                       className="object-cover"
                     />
@@ -89,7 +65,7 @@ export default function CartPage() {
 
                   <div className="flex-1">
                     <h3 className="text-lg font-semibold text-gray-900">
-                      {item.name}
+                      {item.title}
                     </h3>
                     <p className="text-gray-600 text-sm mt-1">
                       KSh {item.price.toLocaleString()}
@@ -104,7 +80,7 @@ export default function CartPage() {
                         -
                       </button>
 
-                      <span className="font-semibold">{item.qty}</span>
+                      <span className="font-semibold">{item.quantity}</span>
 
                       <button
                         onClick={() => increaseQty(item.id)}
@@ -149,16 +125,12 @@ export default function CartPage() {
                 </div>
               </div>
 
-              {/* Checkout button */}
-              <button
-                className="w-full mt-8 bg-gradient-to-r from-purple-600 to-pink-500 text-white py-3 rounded-lg font-semibold shadow hover:opacity-90"
-              >
+              <button className="w-full mt-8 bg-gradient-to-r from-purple-600 to-pink-500 text-white py-3 rounded-lg font-semibold shadow hover:opacity-90">
                 Proceed to Checkout
               </button>
 
-              {/* Continue Shopping */}
               <Link
-                href="/shop"
+                href="/products"
                 className="block text-center mt-4 text-purple-600 hover:underline"
               >
                 Continue Shopping
@@ -166,7 +138,6 @@ export default function CartPage() {
             </div>
           </div>
         )}
-
       </div>
     </div>
   );
