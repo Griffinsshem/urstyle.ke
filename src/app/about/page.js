@@ -127,7 +127,7 @@ export default function AboutPage() {
         <h2 className="text-4xl font-extrabold mb-4">Experience Fashion That Feels Premium</h2>
         <p className="mb-8 text-lg opacity-90">Browse our latest collection and step into your new style.</p>
         <a
-          href="/shop"
+          href="/products"
           className="bg-white text-purple-700 font-semibold px-8 py-4 rounded-full shadow-lg hover:bg-gray-100"
         >
           Shop Now
