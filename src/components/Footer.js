@@ -151,21 +151,6 @@ export default function Footer() {
             <Mail className="w-5 h-5 text-purple-500" />
             support@urstyle.ke
           </p>
-
-          {/* Newsletter */}
-          <div className="mt-6">
-            <p className="text-gray-900 font-medium mb-2">Join our newsletter</p>
-            <div className="flex items-center bg-gray-100 rounded-full p-1 shadow-sm">
-              <input
-                type="email"
-                placeholder="Your email"
-                className="bg-transparent flex-1 px-3 py-2 focus:outline-none text-sm"
-              />
-              <button className="bg-gradient-to-r from-purple-600 to-pink-500 text-white px-4 py-2 rounded-full text-sm flex items-center gap-1 hover:opacity-90 transition">
-                Subscribe <ArrowRight className="w-4 h-4" />
-              </button>
-            </div>
-          </div>
         </div>
       </div>
 
