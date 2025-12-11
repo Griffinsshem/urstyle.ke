@@ -35,7 +35,7 @@ export default function Footer() {
               <Link
                 key={i}
                 href="#"
-                className="p-2.5 rounded-full bg-gray-100 hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-500 hover:text-white transition shadow-sm hover:shadow-md"
+                className="p-2.5 rounded-full bg-gray-100 hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-500 hover:text-white transition shadow-sm hover:shadow-md border border-gray-500"
               >
                 <Icon className="w-5 h-5" />
               </Link>
