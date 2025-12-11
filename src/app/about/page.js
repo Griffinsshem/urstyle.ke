@@ -106,21 +106,22 @@ export default function AboutPage() {
       <section className="max-w-6xl mx-auto px-6 py-20">
         <h2 className="text-4xl font-bold text-center mb-12">Meet the Team</h2>
 
-        <div className="grid md:grid-cols-3 gap-10">
-          {[
-            { name: "Creative Director", img: "https://images.pexels.com/photos/3184308/pexels-photo-3184308.jpeg" },
-            { name: "Lead Designer", img: "https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg" },
-            { name: "Brand Strategist", img: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg" },
-          ].map((member, i) => (
-            <div key={i} className="bg-white rounded-2xl shadow-md p-6 text-center border">
-              <div className="relative w-full h-64 rounded-xl overflow-hidden mb-4">
-                <Image src={member.img} fill className="object-cover" alt={member.name} />
-              </div>
-              <h3 className="font-bold text-xl">{member.name}</h3>
+        <div className="flex justify-center">
+          <div className="bg-white rounded-2xl shadow-md p-6 text-center border max-w-xs w-full">
+            <div className="relative w-full h-64 rounded-xl overflow-hidden mb-4">
+              <Image
+                src="https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg"
+                fill
+                className="object-cover"
+                alt="Faith Chebet"
+              />
             </div>
-          ))}
+            <h3 className="font-bold text-xl">Faith Chebet</h3>
+            <p className="text-gray-900 font-semibold mt-1">CEO</p>
+          </div>
         </div>
       </section>
+
 
       {/* CTA SECTION */}
       <section className="py-20 bg-gradient-to-r from-purple-600 to-pink-500 text-white text-center px-6">
