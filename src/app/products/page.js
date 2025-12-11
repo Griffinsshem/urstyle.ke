@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import ProductCard from "@/components/ProductCard";
-import { Search, Filter } from "lucide-react";
+import { Search } from "lucide-react";
 
 const sampleProducts = [
   {
@@ -46,17 +46,15 @@ export default function ProductsPage() {
 
   return (
     <div className="max-w-7xl mx-auto p-6">
-
-      {/* Page Title */}
-      <h1 className="text-4xl font-extrabold bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent mb-10">
+      <h1 className="text-5xl font-extrabold bg-gradient-to-r from-purple-600 to-pink-500 
+                     bg-clip-text text-transparent mb-10 tracking-tight">
         Shop Premium Fashion
       </h1>
 
-      {/* Filters Section */}
-      <div className="bg-white shadow-lg rounded-2xl p-6 mb-12 border-gray-900 border">
+      <div className="bg-white shadow-xl rounded-2xl p-6 mb-12 border border-gray-200">
 
         {/* Search */}
-        <div className="flex items-center gap-3 p-3 border rounded-xl mb-6 bg-gray-50">
+        <div className="flex items-center gap-3 p-3 border rounded-xl mb-6 bg-gray-50 shadow-inner">
           <Search className="text-gray-600 w-5 h-5" />
           <input
             type="text"
@@ -67,12 +65,12 @@ export default function ProductsPage() {
           />
         </div>
 
-        {/* Filter Controls */}
+        {/* Filters */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 
           {/* Category */}
           <div>
-            <label className="block text-sm font-semibold text-gray-600 mb-2">
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
               Category
             </label>
             <select
@@ -89,7 +87,7 @@ export default function ProductsPage() {
 
           {/* Sort */}
           <div>
-            <label className="block text-sm font-semibold text-gray-600 mb-2">
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
               Sort
             </label>
             <select
@@ -105,7 +103,7 @@ export default function ProductsPage() {
 
           {/* Price Range */}
           <div>
-            <label className="block text-sm font-semibold text-gray-600 mb-2">
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
               Max Price — Ksh {priceRange}
             </label>
             <input
@@ -114,14 +112,13 @@ export default function ProductsPage() {
               max="10000"
               value={priceRange}
               className="w-full accent-purple-600"
-              onChange={(e) => setPriceRange(e.target.value)}
+              onChange={(e) => setPriceRange(Number(e.target.value))}
             />
           </div>
-
         </div>
       </div>
 
-      {/* Grid */}
+      {/* Products Grid */}
       {filteredProducts.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
           {filteredProducts.map((p) => (
