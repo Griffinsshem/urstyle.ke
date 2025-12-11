@@ -46,7 +46,7 @@ export default function FAQPage() {
 
         <div className="w-24 h-1 bg-gradient-to-r from-purple-600 to-pink-500 mx-auto rounded-full"></div>
 
-        <p className="text-gray-600 mt-4 text-lg font-medium">
+        <p className="text-gray-900 font-semibold mt-4 text-lg font-medium">
           Quick answers to common questions about Urstyle.ke
         </p>
       </div>
