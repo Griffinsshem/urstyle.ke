@@ -2,10 +2,11 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Eye, EyeOff, UserPlus } from "lucide-react";
+import { Eye, EyeOff, UserPlus, ShieldCheck, User } from "lucide-react";
 
 export default function RegisterPage() {
   const [showPassword, setShowPassword] = useState(false);
+  const [role, setRole] = useState("customer");
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 px-6 py-20">
@@ -15,7 +16,7 @@ export default function RegisterPage() {
           Create Account
         </h1>
 
-        {/* Name */}
+        {/* Full Name */}
         <div className="mb-5">
           <label className="text-gray-700 font-semibold mb-2 block">Full Name</label>
           <input
@@ -37,9 +38,7 @@ export default function RegisterPage() {
 
         {/* Password */}
         <div className="mb-6 relative">
-          <label className="text-gray-700 font-semibold mb-2 block">
-            Password
-          </label>
+          <label className="text-gray-700 font-semibold mb-2 block">Password</label>
           <input
             type={showPassword ? "text" : "password"}
             className="w-full px-4 py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500"
@@ -52,6 +51,40 @@ export default function RegisterPage() {
           >
             {showPassword ? <EyeOff /> : <Eye />}
           </button>
+        </div>
+
+        {/* ROLE SELECTOR */}
+        <div className="mb-8">
+          <label className="text-gray-700 font-semibold block mb-3">Register as</label>
+
+          <div className="grid grid-cols-2 gap-4">
+
+            {/* Customer */}
+            <button
+              type="button"
+              onClick={() => setRole("customer")}
+              className={`flex items-center gap-2 border rounded-xl p-3 transition ${role === "customer"
+                  ? "border-purple-600 bg-purple-50"
+                  : "border-gray-300 bg-white"
+                }`}
+            >
+              <User className="w-5 h-5 text-purple-600" />
+              <span className="font-semibold text-gray-900 text-sm">Customer</span>
+            </button>
+
+            {/* Admin */}
+            <button
+              type="button"
+              onClick={() => setRole("admin")}
+              className={`flex items-center gap-2 border rounded-xl p-3 transition ${role === "admin"
+                  ? "border-pink-500 bg-pink-50"
+                  : "border-gray-300 bg-white"
+                }`}
+            >
+              <ShieldCheck className="w-5 h-5 text-pink-500" />
+              <span className="font-semibold text-gray-900 text-sm">Admin</span>
+            </button>
+          </div>
         </div>
 
         {/* Register Button */}
