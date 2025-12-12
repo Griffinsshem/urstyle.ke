@@ -2,7 +2,13 @@
 
 import { useState } from "react";
 import ProductCard from "@/components/ProductCard";
-import { Search } from "lucide-react";
+import {
+  Search,
+  Filter,
+  Layers,
+  ArrowUpDown,
+  DollarSign,
+} from "lucide-react";
 
 const sampleProducts = [
   {
@@ -46,35 +52,50 @@ export default function ProductsPage() {
 
   return (
     <div className="max-w-7xl mx-auto p-6">
-      <h1 className="text-5xl font-extrabold bg-gradient-to-r from-purple-600 to-pink-500 
-                     bg-clip-text text-transparent mb-10 tracking-tight">
-        Shop Premium Fashion
-      </h1>
 
-      <div className="bg-white shadow-xl rounded-2xl p-6 mb-12 border border-gray-200">
+      {/* HEADER */}
+      <div className="flex items-center gap-3 mb-10">
+        <Layers className="w-10 h-10 text-purple-600" />
+        <h1 className="text-5xl font-extrabold bg-gradient-to-r 
+                       from-purple-600 to-pink-500 bg-clip-text 
+                       text-transparent tracking-tight">
+          Shop Premium Fashion
+        </h1>
+      </div>
+
+      {/* FILTER BAR CONTAINER */}
+      <div className="bg-white shadow-xl rounded-3xl p-8 mb-12 border border-gray-100">
+
+        {/* Title */}
+        <div className="flex items-center gap-2 mb-6">
+          <Filter className="text-gray-700 w-5 h-5" />
+          <h2 className="text-xl font-semibold text-gray-700">Filters</h2>
+        </div>
 
         {/* Search */}
-        <div className="flex items-center gap-3 p-3 border rounded-xl mb-6 bg-gray-50 shadow-inner">
-          <Search className="text-gray-600 w-5 h-5" />
+        <div className="flex items-center gap-3 p-4 border rounded-2xl mb-8
+                        bg-gray-50 shadow-sm transition hover:shadow-md">
+          <Search className="text-gray-600 w-6 h-6" />
           <input
             type="text"
-            placeholder="Search products..."
+            placeholder="Search premium products..."
             className="bg-transparent outline-none w-full text-gray-700"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
         </div>
 
-        {/* Filters */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* FILTERS GRID */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 
           {/* Category */}
-          <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-2">
+          <div className="flex flex-col gap-2">
+            <label className="text-sm font-semibold text-gray-700 flex items-center gap-1">
+              <Layers className="w-4 h-4 text-gray-600" />
               Category
             </label>
             <select
-              className="w-full border rounded-lg p-3 bg-gray-50"
+              className="w-full border rounded-xl p-3 bg-gray-50 hover:bg-gray-100 transition"
               value={category}
               onChange={(e) => setCategory(e.target.value)}
             >
@@ -86,12 +107,13 @@ export default function ProductsPage() {
           </div>
 
           {/* Sort */}
-          <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-2">
+          <div className="flex flex-col gap-2">
+            <label className="text-sm font-semibold text-gray-700 flex items-center gap-1">
+              <ArrowUpDown className="w-4 h-4 text-gray-600" />
               Sort
             </label>
             <select
-              className="w-full border rounded-lg p-3 bg-gray-50"
+              className="w-full border rounded-xl p-3 bg-gray-50 hover:bg-gray-100 transition"
               value={sort}
               onChange={(e) => setSort(e.target.value)}
             >
@@ -101,10 +123,26 @@ export default function ProductsPage() {
             </select>
           </div>
 
+          {/* Price Range */}
+          <div className="flex flex-col gap-2">
+            <label className="text-sm font-semibold text-gray-700 flex items-center gap-1">
+              <DollarSign className="w-4 h-4 text-gray-600" />
+              Max Price (KSh {priceRange.toLocaleString()})
+            </label>
+            <input
+              type="range"
+              min="0"
+              max="10000"
+              className="w-full accent-purple-500"
+              value={priceRange}
+              onChange={(e) => setPriceRange(Number(e.target.value))}
+            />
+          </div>
+
         </div>
       </div>
 
-      {/* Products Grid */}
+      {/* PRODUCTS GRID */}
       {filteredProducts.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
           {filteredProducts.map((p) => (
