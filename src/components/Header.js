@@ -1,7 +1,7 @@
 "use client";
 import Link from 'next/link';
 import { useState } from 'react';
-import { Menu, X, ShoppingBag, ShoppingCart, User } from 'lucide-react';
+import { Menu, X, ShoppingBag, ShoppingCart, User, InfoIcon, Info } from 'lucide-react';
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -68,6 +68,10 @@ export default function Header() {
             </Link>
             <Link href="/admin/login" className="hover:text-purple-600 transition flex items-center gap-2" onClick={() => setMenuOpen(false)}>
               <User className="w-5 h-5" /> Admin
+            </Link>
+            <Link href="/about" className="hover:text-purple-600 transition flex items-center gap-2" onClick={() => setMenuOpen(false)}>
+              <Info className="w-5 h-5" />
+              About
             </Link>
           </div>
         </nav>
