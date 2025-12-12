@@ -9,7 +9,7 @@ export default function ReturnsPage() {
         <h1 className="text-5xl font-extrabold bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent">
           Returns & Refunds
         </h1>
-        <div className="w-24 h-1 bg-gradient-to-r from-purple-600 to-pink-500 mx-auto rounded-full"></div>
+        <div className="w-24 h-1 bg-gradient-to-r from-purple-600 to-pink-500 mx-auto rounded-full mt-4"></div>
 
         <p className="text-gray-900 font-semibold mt-4 text-lg font-medium">
           Easy, transparent, and customer-first return policy.
