@@ -12,13 +12,13 @@ export default function OurStoryPage() {
         </h1>
         <div className="w-24 h-1 bg-gradient-to-r from-purple-600 to-pink-500 mx-auto mt-4 rounded-full"></div>
 
-        <p className="text-gray-600 mt-4 text-lg font-medium max-w-2xl mx-auto">
+        <p className="text-gray-900 mt-4 text-lg font-medium max-w-2xl mx-auto">
           The journey of how Urstyle.ke became one of Kenya’s most loved fashion destinations.
         </p>
       </div>
 
       {/* Intro / History */}
-      <p className="text-gray-700 text-lg leading-relaxed mb-14 max-w-3xl mx-auto text-center">
+      <p className="text-gray-900 text-lg leading-relaxed mb-14 max-w-3xl mx-auto text-center">
         Urstyle.ke was created with one mission — making premium fashion accessible,
         affordable, and exciting for every Kenyan. What began as a small digital shop
         has grown into a fast-rising fashion brand trusted nationwide.
@@ -33,7 +33,7 @@ export default function OurStoryPage() {
           </h2>
         </div>
 
-        <p className="text-gray-600 leading-relaxed">
+        <p className="text-gray-900 leading-relaxed">
           In 2022, we identified a major gap in Kenya’s fashion market — high-quality
           apparel was either overpriced or hard to access. Driven by passion and a
           mission to make style more inclusive, we launched Urstyle.ke to bring curated,
@@ -50,7 +50,7 @@ export default function OurStoryPage() {
           </h2>
         </div>
 
-        <p className="text-gray-600 leading-relaxed">
+        <p className="text-gray-900 leading-relaxed">
           From humble beginnings, our collections quickly expanded — now offering
           men's fashion, women’s outfits, sneakers, accessories, and more. Today,
           we deliver nationwide with fast and reliable shipping to all major towns.
@@ -66,7 +66,7 @@ export default function OurStoryPage() {
           </h2>
         </div>
 
-        <ul className="space-y-3 text-gray-600 leading-relaxed">
+        <ul className="space-y-3 text-gray-900 leading-relaxed">
           <li>• Commitment to premium quality</li>
           <li>• Fair pricing accessible to everyone</li>
           <li>• Ethical sourcing and sustainability</li>
@@ -83,7 +83,7 @@ export default function OurStoryPage() {
           </h2>
         </div>
 
-        <p className="text-gray-600 leading-relaxed">
+        <p className="text-gray-900 leading-relaxed">
           Our aim is to become Kenya’s leading online fashion brand — and eventually
           expand across Africa. We’re committed to setting new standards in quality,
           technology, and customer experience as we continue to grow.
