@@ -18,7 +18,7 @@ export default function ReturnsPage() {
 
       <div className="space-y-10">
         {/* Return Eligibility */}
-        <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm hover:shadow-md hover:border-red-300 transition-all duration-200">
+        <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm hover:shadow-md hover:border-red-900 transition-all duration-200">
           <div className="flex items-center gap-3 mb-4">
             <Package className="w-7 h-7 text-red-500" />
             <h2 className="text-3xl font-bold text-gray-900">
@@ -35,7 +35,7 @@ export default function ReturnsPage() {
         </div>
 
         {/* Exchanges */}
-        <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm hover:shadow-md hover:border-purple-300 transition-all duration-200">
+        <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm hover:shadow-md hover:border-purple-900 transition-all duration-200">
           <div className="flex items-center gap-3 mb-4">
             <RotateCcw className="w-7 h-7 text-purple-500" />
             <h2 className="text-3xl font-bold text-gray-900">
@@ -51,7 +51,7 @@ export default function ReturnsPage() {
         </div>
 
         {/* Refunds */}
-        <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm hover:shadow-md hover:border-orange-300 transition-all duration-200">
+        <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm hover:shadow-md hover:border-orange-900 transition-all duration-200">
           <div className="flex items-center gap-3 mb-4">
             <HandCoins className="w-7 h-7 text-orange-500" />
             <h2 className="text-3xl font-bold text-gray-900">
@@ -70,7 +70,7 @@ export default function ReturnsPage() {
         </div>
 
         {/* How to Return */}
-        <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-200">
+        <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm hover:shadow-md hover:border-blue-900 transition-all duration-200">
           <div className="flex items-center gap-3 mb-4">
             <Mail className="w-7 h-7 text-blue-500" />
             <h2 className="text-3xl font-bold text-gray-900">
