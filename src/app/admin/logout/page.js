@@ -7,16 +7,31 @@ export default function LogoutPage() {
   const router = useRouter();
 
   useEffect(() => {
-    // Remove admin session
-    localStorage.removeItem("adminLoggedIn");
+    /**
+     * STEP C (Optional but Recommended)
+     * Clear ALL auth-related UI state
+     * This prevents role bleed between sessions
+     */
 
-    // Redirect to login page
+    // Admin UI flags
+    localStorage.removeItem("adminLoggedIn");
+    localStorage.removeItem("userRole");
+
+    // Customer UI flags (future-safe)
+    localStorage.removeItem("customerLoggedIn");
+
+    // Optional: clear any persisted cart/session later
+    // localStorage.removeItem("cart");
+
+    // Redirect cleanly to admin login
     router.replace("/admin/login");
   }, [router]);
 
   return (
-    <div className="flex items-center justify-center h-screen">
-      <p className="text-lg text-gray-700">Logging out...</p>
+    <div className="flex items-center justify-center h-screen bg-gray-50">
+      <p className="text-lg font-medium text-gray-700">
+        Logging out securely...
+      </p>
     </div>
   );
 }
