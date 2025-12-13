@@ -17,7 +17,7 @@ export default function ShippingPage() {
         </h1>
         <div className="w-28 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mt-4 rounded-full"></div>
 
-        <p className="text-gray-600 mt-4 text-lg font-medium">
+        <p className="text-gray-900 mt-4 text-lg font-medium">
           Fast, reliable, and nationwide delivery across Kenya.
         </p>
       </div>
@@ -32,7 +32,7 @@ export default function ShippingPage() {
             </h2>
           </div>
 
-          <ul className="text-gray-600 space-y-2 leading-relaxed">
+          <ul className="text-gray-900 space-y-2 leading-relaxed">
             <li>• <strong>Nairobi & Kiambu:</strong> Same-day or next-day delivery</li>
             <li>• <strong>Major towns (Mombasa, Kisumu, Eldoret, Nakuru):</strong> 1–2 days</li>
             <li>• <strong>Remote areas:</strong> 2–4 days depending on courier routes</li>
@@ -48,7 +48,7 @@ export default function ShippingPage() {
             </h2>
           </div>
 
-          <ul className="text-gray-600 space-y-2 leading-relaxed">
+          <ul className="text-gray-900 space-y-2 leading-relaxed">
             <li>• <strong>Nairobi CBD:</strong> KSh 150</li>
             <li>• <strong>Nairobi outskirts / Kiambu:</strong> KSh 200–300</li>
             <li>• <strong>Major towns:</strong> KSh 300–400</li>
@@ -65,7 +65,7 @@ export default function ShippingPage() {
             </h2>
           </div>
 
-          <p className="text-gray-600 leading-relaxed">
+          <p className="text-gray-900 leading-relaxed">
             Orders placed before <strong>3:00 PM</strong> are processed the same day.
             Orders placed after the cut-off will be prepared the next morning.
           </p>
@@ -80,7 +80,7 @@ export default function ShippingPage() {
             </h2>
           </div>
 
-          <p className="text-gray-600 leading-relaxed">
+          <p className="text-gray-900 leading-relaxed">
             You’ll receive SMS or WhatsApp updates once your order is dispatched.
             Riders or courier partners will also call upon arrival.
           </p>
@@ -95,7 +95,7 @@ export default function ShippingPage() {
             </h2>
           </div>
 
-          <p className="text-gray-600 leading-relaxed">
+          <p className="text-gray-900 leading-relaxed">
             Need your order urgently? You can pick it up from selected collection
             points in Nairobi. Contact customer support to check availability.
           </p>
