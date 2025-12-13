@@ -25,7 +25,7 @@ export default function OurStoryPage() {
       </p>
 
       {/* How It Started */}
-      <section className="mb-14 bg-white border border-gray-200 rounded-2xl p-10 shadow-sm hover:shadow-md hover:border-purple-300 transition-all duration-200">
+      <section className="mb-14 bg-white border border-gray-200 rounded-2xl p-10 shadow-sm hover:shadow-md hover:border-purple-900 transition-all duration-200">
         <div className="flex items-center gap-3 mb-4">
           <Sparkles className="w-7 h-7 text-purple-500" />
           <h2 className="text-2xl font-semibold text-gray-900">
@@ -42,7 +42,7 @@ export default function OurStoryPage() {
       </section>
 
       {/* Growth & Evolution */}
-      <section className="mb-14 bg-white border border-gray-200 rounded-2xl p-10 shadow-sm hover:shadow-md hover:border-pink-300 transition-all duration-200">
+      <section className="mb-14 bg-white border border-gray-200 rounded-2xl p-10 shadow-sm hover:shadow-md hover:border-pink-900 transition-all duration-200">
         <div className="flex items-center gap-3 mb-4">
           <Rocket className="w-7 h-7 text-pink-500" />
           <h2 className="text-2xl font-semibold text-gray-900">
@@ -58,7 +58,7 @@ export default function OurStoryPage() {
       </section>
 
       {/* Values */}
-      <section className="mb-14 bg-white border border-gray-200 rounded-2xl p-10 shadow-sm hover:shadow-md hover:border-purple-200 transition-all duration-200">
+      <section className="mb-14 bg-white border border-gray-200 rounded-2xl p-10 shadow-sm hover:shadow-md hover:border-purple-900 transition-all duration-200">
         <div className="flex items-center gap-3 mb-4">
           <HeartHandshake className="w-7 h-7 text-purple-500" />
           <h2 className="text-2xl font-semibold text-gray-900">
@@ -75,7 +75,7 @@ export default function OurStoryPage() {
       </section>
 
       {/* Future Vision */}
-      <section className="bg-white border border-gray-200 rounded-2xl p-10 shadow-sm hover:shadow-md hover:border-indigo-300 transition-all duration-200">
+      <section className="bg-white border border-gray-200 rounded-2xl p-10 shadow-sm hover:shadow-md hover:border-indigo-900 transition-all duration-200">
         <div className="flex items-center gap-3 mb-4">
           <Globe className="w-7 h-7 text-indigo-500" />
           <h2 className="text-2xl font-semibold text-gray-900">
