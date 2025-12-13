@@ -24,7 +24,7 @@ export default function ShippingPage() {
 
       <div className="space-y-10">
         {/* Delivery Timelines */}
-        <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-200">
+        <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm hover:shadow-md hover:border-blue-900 transition-all duration-200">
           <div className="flex items-center gap-3 mb-4">
             <Truck className="w-7 h-7 text-blue-500" />
             <h2 className="text-2xl font-semibold text-gray-900">
@@ -40,7 +40,7 @@ export default function ShippingPage() {
         </div>
 
         {/* Delivery Fees */}
-        <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm hover:shadow-md hover:border-purple-300 transition-all duration-200">
+        <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm hover:shadow-md hover:border-purple-900 transition-all duration-200">
           <div className="flex items-center gap-3 mb-4">
             <Wallet className="w-7 h-7 text-purple-500" />
             <h2 className="text-2xl font-semibold text-gray-900">
@@ -57,7 +57,7 @@ export default function ShippingPage() {
         </div>
 
         {/* Order Processing */}
-        <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm hover:shadow-md hover:border-indigo-300 transition-all duration-200">
+        <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm hover:shadow-md hover:border-indigo-900 transition-all duration-200">
           <div className="flex items-center gap-3 mb-4">
             <Clock className="w-7 h-7 text-indigo-500" />
             <h2 className="text-2xl font-semibold text-gray-900">
@@ -72,7 +72,7 @@ export default function ShippingPage() {
         </div>
 
         {/* Delivery Notifications */}
-        <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-200">
+        <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm hover:shadow-md hover:border-blue-900 transition-all duration-200">
           <div className="flex items-center gap-3 mb-4">
             <MessageCircle className="w-7 h-7 text-blue-500" />
             <h2 className="text-2xl font-semibold text-gray-900">
@@ -87,7 +87,7 @@ export default function ShippingPage() {
         </div>
 
         {/* Pickup Option */}
-        <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm hover:shadow-md hover:border-green-300 transition-all duration-200">
+        <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm hover:shadow-md hover:border-green-900 transition-all duration-200">
           <div className="flex items-center gap-3 mb-4">
             <Store className="w-7 h-7 text-green-500" />
             <h2 className="text-2xl font-semibold text-gray-900">
