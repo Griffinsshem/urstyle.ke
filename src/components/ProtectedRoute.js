@@ -5,19 +5,27 @@ import { useRouter } from "next/navigation";
 
 export default function ProtectedRoute({ children }) {
   const router = useRouter();
-  const [loading, setLoading] = useState(true);
+  const [authorized, setAuthorized] = useState(false);
 
   useEffect(() => {
-    const isLoggedIn = localStorage.getItem("adminLoggedIn");
+    const role = localStorage.getItem("userRole");
 
-    if (!isLoggedIn) {
-      router.replace("/admin/login");
+    if (role !== "admin") {
+      router.replace("/login");
     } else {
-      setLoading(false);
+      setAuthorized(true);
     }
   }, [router]);
 
-  if (loading) return null;
+  if (!authorized) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <p className="text-gray-600 font-semibold text-lg">
+          Checking authorization…
+        </p>
+      </div>
+    );
+  }
 
   return children;
 }
