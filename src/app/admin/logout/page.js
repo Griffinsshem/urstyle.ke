@@ -2,29 +2,34 @@
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { supabase } from "@/lib/supabaseClient";
 
 export default function LogoutPage() {
   const router = useRouter();
 
   useEffect(() => {
-    /**
-     * STEP C (Optional but Recommended)
-     * Clear ALL auth-related UI state
-     * This prevents role bleed between sessions
-     */
+    async function logout() {
+      /**
+       * ✅ Step D6: Supabase Logout
+       * This invalidates the session properly
+       */
+      await supabase.auth.signOut();
 
-    // Admin UI flags
-    localStorage.removeItem("adminLoggedIn");
-    localStorage.removeItem("userRole");
+      /**
+       * 🧹 Cleanup any UI-only state (safe to keep)
+       * Prevents role bleed between sessions
+       */
+      localStorage.removeItem("userRole");
+      localStorage.removeItem("adminLoggedIn");
+      localStorage.removeItem("customerLoggedIn");
 
-    // Customer UI flags (future-safe)
-    localStorage.removeItem("customerLoggedIn");
+      /**
+       * 🚀 Redirect to admin login
+       */
+      router.replace("/admin/login");
+    }
 
-    // Optional: clear any persisted cart/session later
-    // localStorage.removeItem("cart");
-
-    // Redirect cleanly to admin login
-    router.replace("/admin/login");
+    logout();
   }, [router]);
 
   return (
