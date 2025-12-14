@@ -83,7 +83,7 @@ export default function AboutPage() {
           ].map((val, i) => (
             <div key={i} className="bg-gray-50 p-8 shadow-sm rounded-2xl border border-gray-900">
               <h3 className="font-bold text-xl mb-3">{val.title}</h3>
-              <p className="text-gray-600">{val.desc}</p>
+              <p className="text-gray-900">{val.desc}</p>
             </div>
           ))}
         </div>
