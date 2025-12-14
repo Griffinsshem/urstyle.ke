@@ -22,21 +22,23 @@ export default function AdminLayout({ children }) {
   const [open, setOpen] = useState(false);
 
   /**
-   * 🚫 Do NOT wrap login / logout with admin layout
-   * This prevents redirect loops & broken UI
+   * 🚫 IMPORTANT:
+   * Do NOT wrap login / logout routes with admin layout
+   * This avoids redirect loops & broken UI
    */
   if (pathname === "/admin/login" || pathname === "/admin/logout") {
-    return <>{children}</>;
+    return children;
   }
 
   return (
     <ProtectedRoute>
-      <div className="min-h-screen flex bg-gray-50">
+      <div className="min-h-screen flex bg-gray-50 relative">
         {/* Sidebar */}
         <aside
           className={`
-            fixed md:static top-0 left-0 h-full w-72 bg-white shadow-xl 
-            border-r border-gray-200 z-50 transform transition-transform duration-300
+            fixed md:static inset-y-0 left-0 w-72 bg-white shadow-xl
+            border-r border-gray-200 z-50
+            transform transition-transform duration-300
             ${open ? "translate-x-0" : "-translate-x-full md:translate-x-0"}
           `}
         >
@@ -48,11 +50,11 @@ export default function AdminLayout({ children }) {
               </span>
             </Link>
 
-            {/* Close button (mobile) */}
+            {/* Close (mobile) */}
             <button
               className="md:hidden"
               onClick={() => setOpen(false)}
-              aria-label="Close menu"
+              aria-label="Close sidebar"
             >
               <X className="w-6 h-6 text-gray-700" />
             </button>
@@ -86,7 +88,7 @@ export default function AdminLayout({ children }) {
         <button
           className="md:hidden fixed top-4 left-4 p-2 rounded-xl bg-white shadow-lg z-40"
           onClick={() => setOpen(true)}
-          aria-label="Open menu"
+          aria-label="Open sidebar"
         >
           <Menu className="w-6 h-6 text-gray-700" />
         </button>
