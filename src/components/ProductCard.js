@@ -12,7 +12,7 @@ export default function ProductCard({ id, title, price, image, category }) {
 
       <div className="mt-4 flex flex-col flex-grow">
         <h2 className="text-lg font-semibold text-gray-800">{title}</h2>
-        <p className="text-sm text-gray-500">{category}</p>
+        <p className="text-sm text-gray-900 font-semibold">{category}</p>
 
         <p className="text-xl font-bold mt-auto text-purple-600">
           Ksh {price.toLocaleString()}
