@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Menu,
   X,
@@ -10,137 +10,121 @@ import {
   Info,
   LogIn,
   UserPlus,
+  LogOut,
 } from "lucide-react";
+import { supabase } from "@/lib/supabaseClient";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [user, setUser] = useState(null);
+
+  // 🔐 Listen for auth state
+  useEffect(() => {
+    supabase.auth.getUser().then(({ data }) => {
+      setUser(data?.user ?? null);
+    });
+
+    const { data: listener } = supabase.auth.onAuthStateChange(
+      (_event, session) => {
+        setUser(session?.user ?? null);
+      }
+    );
+
+    return () => listener.subscription.unsubscribe();
+  }, []);
+
+  async function handleLogout() {
+    await supabase.auth.signOut();
+  }
 
   return (
-    <header className="bg-white shadow-lg sticky top-0 z-50 transition-shadow duration-300">
+    <header className="bg-white shadow-lg sticky top-0 z-50">
       <div className="max-w-7xl mx-auto flex justify-between items-center p-4 md:p-6">
 
         {/* Brand */}
-        <Link
-          href="/"
-          className="flex items-center gap-2 hover:scale-105 transition-transform"
-        >
+        <Link href="/" className="flex items-center gap-2">
           <ShoppingBag className="w-8 h-8 text-pink-500" />
-          <span className="text-3xl font-extrabold bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent tracking-wide">
+          <span className="text-3xl font-extrabold bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent">
             Urstyle.ke
           </span>
         </Link>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex gap-10 text-gray-700 font-semibold uppercase tracking-wider items-center">
-          <Link href="/products" className="nav-link">Products</Link>
-          <Link href="/about" className="nav-link">About</Link>
-
-          <Link href="/cart" className="nav-link flex items-center gap-1">
+        {/* Desktop Nav */}
+        <nav className="hidden md:flex items-center gap-8 font-semibold text-gray-700">
+          <Link href="/products">Products</Link>
+          <Link href="/about">About</Link>
+          <Link href="/cart" className="flex items-center gap-1">
             <ShoppingCart className="w-5 h-5" /> Cart
           </Link>
 
-          <Link href="/admin/login" className="nav-link flex items-center gap-1">
-            <User className="w-5 h-5" /> Admin
-          </Link>
+          {/* AUTH STATE */}
+          {!user ? (
+            <div className="flex gap-3 ml-4">
+              <Link
+                href="/login"
+                className="px-4 py-2 rounded-xl border hover:border-purple-500"
+              >
+                Login
+              </Link>
+              <Link
+                href="/register"
+                className="px-4 py-2 rounded-xl bg-gradient-to-r from-purple-600 to-pink-500 text-white"
+              >
+                Register
+              </Link>
+            </div>
+          ) : (
+            <div className="flex items-center gap-4 ml-4">
+              <Link
+                href="/account"
+                className="flex items-center gap-2 text-purple-600"
+              >
+                <User className="w-5 h-5" />
+                Account
+              </Link>
 
-          {/* Auth Buttons */}
-          <div className="flex items-center gap-3 ml-4">
-            <Link
-              href="/login"
-              className="flex items-center gap-2 px-4 py-2 rounded-xl border border-gray-300 hover:border-purple-500 hover:text-purple-600 transition normal-case"
-            >
-              <LogIn className="w-4 h-4" />
-              Login
-            </Link>
-
-            <Link
-              href="/register"
-              className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-purple-600 to-pink-500 text-white hover:opacity-90 transition shadow normal-case"
-            >
-              <UserPlus className="w-4 h-4" />
-              Register
-            </Link>
-          </div>
+              <button
+                onClick={handleLogout}
+                className="flex items-center gap-2 text-red-600"
+              >
+                <LogOut className="w-5 h-5" />
+                Logout
+              </button>
+            </div>
+          )}
         </nav>
 
-        {/* Mobile Menu Button */}
+        {/* Mobile Menu Toggle */}
         <button
-          className="md:hidden p-2 rounded hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-500"
+          className="md:hidden"
           onClick={() => setMenuOpen(!menuOpen)}
         >
-          {menuOpen ? (
-            <X className="w-6 h-6 text-gray-700" />
-          ) : (
-            <Menu className="w-6 h-6 text-gray-700" />
-          )}
+          {menuOpen ? <X /> : <Menu />}
         </button>
       </div>
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <nav className="md:hidden bg-white shadow-xl rounded-b-lg animate-slideDown">
-          <div className="flex flex-col gap-4 p-6 text-gray-700 font-semibold uppercase tracking-wide">
-            <Link href="/products" onClick={() => setMenuOpen(false)}>
-              Products
-            </Link>
-            <Link href="/about" onClick={() => setMenuOpen(false)}>
-              <Info className="inline w-5 h-5 mr-2" /> About
-            </Link>
-            <Link href="/cart" onClick={() => setMenuOpen(false)}>
-              <ShoppingCart className="inline w-5 h-5 mr-2" /> Cart
-            </Link>
-            <Link href="/admin/login" onClick={() => setMenuOpen(false)}>
-              <User className="inline w-5 h-5 mr-2" /> Admin
-            </Link>
+        <nav className="md:hidden bg-white border-t p-6 space-y-4">
+          <Link href="/products" onClick={() => setMenuOpen(false)}>Products</Link>
+          <Link href="/about" onClick={() => setMenuOpen(false)}>About</Link>
+          <Link href="/cart" onClick={() => setMenuOpen(false)}>Cart</Link>
 
-            <hr />
-
-            {/* Mobile Auth */}
-            <Link
-              href="/login"
-              onClick={() => setMenuOpen(false)}
-              className="flex items-center gap-2"
-            >
-              <LogIn className="w-5 h-5" /> Login
-            </Link>
-
-            <Link
-              href="/register"
-              onClick={() => setMenuOpen(false)}
-              className="flex items-center gap-2 text-purple-600"
-            >
-              <UserPlus className="w-5 h-5" /> Register
-            </Link>
-          </div>
+          {!user ? (
+            <>
+              <Link href="/login" onClick={() => setMenuOpen(false)}>Login</Link>
+              <Link href="/register" onClick={() => setMenuOpen(false)}>Register</Link>
+            </>
+          ) : (
+            <>
+              <Link href="/account" onClick={() => setMenuOpen(false)}>Account</Link>
+              <button onClick={handleLogout} className="text-red-600">
+                Logout
+              </button>
+            </>
+          )}
         </nav>
       )}
-
-      {/* Animations */}
-      <style jsx>{`
-        .nav-link {
-          position: relative;
-        }
-        .nav-link::after {
-          content: "";
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          height: 2px;
-          width: 0;
-          background: linear-gradient(to right, #a855f7, #ec4899);
-          transition: width 0.3s;
-        }
-        .nav-link:hover::after {
-          width: 100%;
-        }
-        @keyframes slideDown {
-          from { transform: translateY(-10px); opacity: 0; }
-          to { transform: translateY(0); opacity: 1; }
-        }
-        .animate-slideDown {
-          animation: slideDown 0.25s ease-out forwards;
-        }
-      `}</style>
     </header>
   );
 }
