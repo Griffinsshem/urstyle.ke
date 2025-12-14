@@ -150,7 +150,7 @@ export default function ProductsPage() {
           ))}
         </div>
       ) : (
-        <div className="text-center text-gray-500 text-xl mt-20">
+        <div className="text-center text-gray-900 text-xl mt-20">
           No products match your filters.
         </div>
       )}
