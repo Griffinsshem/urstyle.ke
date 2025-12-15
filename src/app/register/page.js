@@ -1,19 +1,17 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 import { Eye, EyeOff, UserPlus, ShieldCheck, User } from "lucide-react";
 import { supabase } from "@/lib/supabaseClient";
 
 export default function RegisterPage() {
   const router = useRouter();
-
-  const [fullName, setFullName] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [role, setRole] = useState("customer");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("customer");
-  const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -22,15 +20,10 @@ export default function RegisterPage() {
     setLoading(true);
     setError(null);
 
+    // 1️⃣ Create auth user
     const { data, error: signUpError } = await supabase.auth.signUp({
       email,
       password,
-      options: {
-        data: {
-          full_name: fullName,
-          role,
-        },
-      },
     });
 
     if (signUpError) {
@@ -39,15 +32,19 @@ export default function RegisterPage() {
       return;
     }
 
-    /**
-     * Insert profile row
-     * auth.uid() === profiles.id
-     */
+    const user = data.user;
+    if (!user) {
+      setError("Registration failed. Please try again.");
+      setLoading(false);
+      return;
+    }
+
+    // 2️⃣ Insert profile (MATCH EXISTING COLUMNS)
     const { error: profileError } = await supabase
       .from("profiles")
       .insert({
-        id: data.user.id,
-        full_name: fullName,
+        id: user.id,
+        email,
         role,
       });
 
@@ -57,12 +54,14 @@ export default function RegisterPage() {
       return;
     }
 
-    // Redirect
+    // 3️⃣ Redirect based on role
     if (role === "admin") {
       router.push("/admin");
     } else {
       router.push("/");
     }
+
+    setLoading(false);
   }
 
   return (
@@ -73,72 +72,85 @@ export default function RegisterPage() {
         </h1>
 
         <form onSubmit={handleRegister} className="space-y-5">
-
-          <input
-            required
-            placeholder="Full Name"
-            className="w-full px-4 py-3 border rounded-xl"
-            value={fullName}
-            onChange={(e) => setFullName(e.target.value)}
-          />
-
-          <input
-            required
-            type="email"
-            placeholder="Email"
-            className="w-full px-4 py-3 border rounded-xl"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-
-          <div className="relative">
+          {/* Email */}
+          <div>
+            <label className="text-gray-700 font-semibold mb-2 block">
+              Email
+            </label>
             <input
+              type="email"
               required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-purple-500"
+            />
+          </div>
+
+          {/* Password */}
+          <div className="relative">
+            <label className="text-gray-700 font-semibold mb-2 block">
+              Password
+            </label>
+            <input
               type={showPassword ? "text" : "password"}
-              placeholder="Password"
-              className="w-full px-4 py-3 border rounded-xl"
+              required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              className="w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-purple-500"
             />
             <button
               type="button"
+              className="absolute right-3 top-10 text-gray-500"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 top-3"
             >
               {showPassword ? <EyeOff /> : <Eye />}
             </button>
           </div>
 
-          {/* Role */}
-          <div className="grid grid-cols-2 gap-4">
-            <button
-              type="button"
-              onClick={() => setRole("customer")}
-              className={`border rounded-xl p-3 flex gap-2 ${role === "customer" && "border-purple-600 bg-purple-50"
-                }`}
-            >
-              <User /> Customer
-            </button>
+          {/* Role selector */}
+          <div>
+            <label className="text-gray-700 font-semibold block mb-3">
+              Register as
+            </label>
 
-            <button
-              type="button"
-              onClick={() => setRole("admin")}
-              className={`border rounded-xl p-3 flex gap-2 ${role === "admin" && "border-pink-600 bg-pink-50"
-                }`}
-            >
-              <ShieldCheck /> Admin
-            </button>
+            <div className="grid grid-cols-2 gap-4">
+              <button
+                type="button"
+                onClick={() => setRole("customer")}
+                className={`flex items-center gap-2 border rounded-xl p-3 ${role === "customer"
+                    ? "border-purple-600 bg-purple-50"
+                    : "border-gray-300"
+                  }`}
+              >
+                <User className="w-5 h-5 text-purple-600" />
+                Customer
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setRole("admin")}
+                className={`flex items-center gap-2 border rounded-xl p-3 ${role === "admin"
+                    ? "border-pink-500 bg-pink-50"
+                    : "border-gray-300"
+                  }`}
+              >
+                <ShieldCheck className="w-5 h-5 text-pink-500" />
+                Admin
+              </button>
+            </div>
           </div>
 
           {error && (
-            <p className="text-red-600 text-sm font-medium">{error}</p>
+            <p className="text-red-600 text-sm font-semibold">{error}</p>
           )}
 
           <button
+            type="submit"
             disabled={loading}
-            className="w-full bg-gradient-to-r from-purple-600 to-pink-500 text-white py-3 rounded-xl font-semibold"
+            className="w-full bg-gradient-to-r from-purple-600 to-pink-500 text-white py-3 rounded-xl font-semibold flex items-center justify-center gap-2"
           >
-            <UserPlus /> {loading ? "Creating..." : "Register"}
+            <UserPlus size={18} />
+            {loading ? "Creating account..." : "Register"}
           </button>
         </form>
 
