@@ -19,7 +19,7 @@ export default function LoginPage() {
     setLoading(true);
     setError(null);
 
-    // 1️⃣ Sign in user
+
     const { data, error: loginError } =
       await supabase.auth.signInWithPassword({
         email,
@@ -27,7 +27,7 @@ export default function LoginPage() {
       });
 
     if (loginError) {
-      // ✅ UX FIX: Handle unconfirmed email
+
       if (loginError.message === "Email not confirmed") {
         setError(
           "Please confirm your email address. Check your inbox and spam folder."
@@ -40,7 +40,7 @@ export default function LoginPage() {
       return;
     }
 
-    // 2️⃣ Fetch user role from profiles
+
     const { data: profile, error: profileError } = await supabase
       .from("profiles")
       .select("role")
@@ -53,7 +53,7 @@ export default function LoginPage() {
       return;
     }
 
-    // 3️⃣ Redirect based on role
+
     if (profile.role === "admin") {
       router.push("/admin");
     } else {
