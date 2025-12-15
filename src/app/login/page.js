@@ -19,7 +19,7 @@ export default function LoginPage() {
     setLoading(true);
     setError(null);
 
-
+    // 1️⃣ Sign in
     const { data, error: loginError } =
       await supabase.auth.signInWithPassword({
         email,
@@ -27,40 +27,47 @@ export default function LoginPage() {
       });
 
     if (loginError) {
-
       if (loginError.message === "Email not confirmed") {
         setError(
-          "Please confirm your email address. Check your inbox and spam folder."
+          "Please confirm your email address. Check your inbox or spam folder."
         );
       } else {
         setError(loginError.message);
       }
-
       setLoading(false);
       return;
     }
 
+    // 2️⃣ SAFETY: ensure session exists
+    const {
+      data: { session },
+    } = await supabase.auth.getSession();
 
+    if (!session?.user) {
+      setError("Session not ready. Please try again.");
+      setLoading(false);
+      return;
+    }
+
+    // 3️⃣ Fetch role
     const { data: profile, error: profileError } = await supabase
       .from("profiles")
       .select("role")
-      .eq("id", data.user.id)
+      .eq("id", session.user.id)
       .single();
 
-    if (profileError) {
-      setError("Unable to fetch user profile. Please try again.");
+    if (profileError || !profile?.role) {
+      setError("Unable to load user role.");
       setLoading(false);
       return;
     }
 
-
+    // 4️⃣ Role-based redirect (IMPORTANT: replace)
     if (profile.role === "admin") {
-      router.push("/admin");
+      router.replace("/admin");
     } else {
-      router.push("/");
+      router.replace("/");
     }
-
-    setLoading(false);
   }
 
   return (
@@ -71,27 +78,24 @@ export default function LoginPage() {
         </h1>
 
         <form onSubmit={handleLogin} className="space-y-6">
-          {/* Email */}
           <input
             type="email"
             required
             placeholder="Email"
-            className="w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-purple-500"
+            className="w-full px-4 py-3 border rounded-xl"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
 
-          {/* Password */}
           <div className="relative">
             <input
               type={showPassword ? "text" : "password"}
               required
               placeholder="Password"
-              className="w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-purple-500"
+              className="w-full px-4 py-3 border rounded-xl"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
@@ -101,18 +105,16 @@ export default function LoginPage() {
             </button>
           </div>
 
-          {/* Error Message */}
           {error && (
             <p className="text-red-600 text-sm font-semibold">
               {error}
             </p>
           )}
 
-          {/* Login Button */}
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-gradient-to-r from-purple-600 to-pink-500 text-white py-3 rounded-xl font-semibold flex items-center justify-center gap-2 disabled:opacity-70"
+            className="w-full bg-gradient-to-r from-purple-600 to-pink-500 text-white py-3 rounded-xl font-semibold flex items-center justify-center gap-2"
           >
             <LogIn size={18} />
             {loading ? "Signing in..." : "Login"}
