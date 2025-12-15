@@ -1,18 +1,18 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { supabase } from "@/lib/supabaseClient";
 
 export default function ProtectedRoute({ children }) {
   const router = useRouter();
+  const pathname = usePathname();
 
   const [loading, setLoading] = useState(true);
-  const [authorized, setAuthorized] = useState(false);
 
   useEffect(() => {
-    async function checkAuth() {
-      // 1️⃣ Check Supabase session
+    async function checkAccess() {
+      // 1️⃣ Check session
       const {
         data: { session },
       } = await supabase.auth.getSession();
@@ -22,37 +22,39 @@ export default function ProtectedRoute({ children }) {
         return;
       }
 
-      const userId = session.user.id;
-
-      // 2️⃣ Fetch role from profiles
+      // 2️⃣ Fetch user role
       const { data: profile, error } = await supabase
         .from("profiles")
         .select("role")
-        .eq("id", userId)
+        .eq("id", session.user.id)
         .single();
 
-      if (error || profile.role !== "admin") {
+      if (error || !profile) {
         router.replace("/login");
         return;
       }
 
-      // 3️⃣ Authorized admin
-      setAuthorized(true);
+      // 3️⃣ Enforce admin-only routes
+      if (pathname.startsWith("/admin") && profile.role !== "admin") {
+        router.replace("/");
+        return;
+      }
+
       setLoading(false);
     }
 
-    checkAuth();
-  }, [router]);
+    checkAccess();
+  }, [router, pathname]);
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <p className="text-gray-600 font-semibold text-lg">
-          Checking authorization…
+      <div className="min-h-screen flex items-center justify-center">
+        <p className="text-gray-600 font-semibold">
+          Checking permissions...
         </p>
       </div>
     );
   }
 
-  return authorized ? children : null;
+  return <>{children}</>;
 }
