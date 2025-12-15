@@ -56,7 +56,7 @@ export default function Header() {
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-10 font-medium text-gray-900">
+        <nav className="hidden md:flex items-center gap-10 font-bold text-gray-900 font-large">
 
           <Link
             href="/products"
