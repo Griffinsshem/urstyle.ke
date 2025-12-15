@@ -19,8 +19,10 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [user, setUser] = useState(null);
 
+  // 🛒 Cart count
   const cart = useCartStore((state) => state.cart);
   const cartCount = cart.reduce((acc, item) => acc + item.quantity, 0);
+  const displayCount = cartCount > 5 ? "5+" : cartCount;
 
   useEffect(() => {
     supabase.auth.getUser().then(({ data }) => {
@@ -72,7 +74,7 @@ export default function Header() {
             About
           </Link>
 
-          {/* Cart with badge */}
+          {/* Cart with Badge */}
           <Link
             href="/cart"
             className="relative flex items-center gap-2 hover:text-purple-600 transition"
@@ -81,10 +83,11 @@ export default function Header() {
             Cart
             {cartCount > 0 && (
               <span
-                className="absolute -top-2 -right-3 bg-gradient-to-r from-purple-600 to-pink-500 
-                           text-white text-xs font-bold px-2 py-0.5 rounded-full shadow"
+                className="absolute -top-2 -right-4 bg-gradient-to-r 
+                           from-purple-600 to-pink-500 text-white 
+                           text-xs font-bold px-2 py-0.5 rounded-full shadow"
               >
-                {cartCount}
+                {displayCount}
               </span>
             )}
           </Link>
@@ -164,24 +167,23 @@ export default function Header() {
             About
           </Link>
 
-          {/* Mobile Cart with badge */}
+          {/* Mobile Cart with Badge */}
           <Link
             href="/cart"
             onClick={() => setMenuOpen(false)}
-            className="flex items-center gap-3 text-gray-700"
+            className="relative flex items-center gap-3 text-gray-700"
           >
-            <div className="relative">
-              <ShoppingCart className="w-5 h-5" />
-              {cartCount > 0 && (
-                <span
-                  className="absolute -top-2 -right-2 bg-gradient-to-r from-purple-600 to-pink-500 
-                             text-white text-xs font-bold px-1.5 rounded-full"
-                >
-                  {cartCount}
-                </span>
-              )}
-            </div>
+            <ShoppingCart className="w-5 h-5" />
             Cart
+            {cartCount > 0 && (
+              <span
+                className="absolute -top-2 left-16 bg-gradient-to-r 
+                           from-purple-600 to-pink-500 text-white 
+                           text-xs font-bold px-2 py-0.5 rounded-full"
+              >
+                {displayCount}
+              </span>
+            )}
           </Link>
 
           {!user ? (
