@@ -11,22 +11,13 @@ export default function ProtectedRoute({ children }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function checkAccess() {
-      // 1️⃣ Check session
-      const {
-        data: { session },
-      } = await supabase.auth.getSession();
+    let mounted = true;
 
-      if (!session) {
-        router.replace("/login");
-        return;
-      }
-
-      // 2️⃣ Fetch user role
+    async function checkRole(user) {
       const { data: profile, error } = await supabase
         .from("profiles")
         .select("role")
-        .eq("id", session.user.id)
+        .eq("id", user.id)
         .single();
 
       if (error || !profile) {
@@ -34,23 +25,48 @@ export default function ProtectedRoute({ children }) {
         return;
       }
 
-      // 3️⃣ Enforce admin-only routes
+      // 🚨 Enforce admin-only access
       if (pathname.startsWith("/admin") && profile.role !== "admin") {
         router.replace("/");
         return;
       }
 
-      setLoading(false);
+      if (mounted) setLoading(false);
     }
 
-    checkAccess();
+    // 1️⃣ Initial session check
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (!session?.user) {
+        router.replace("/login");
+        return;
+      }
+
+      checkRole(session.user);
+    });
+
+    // 2️⃣ Listen for auth hydration (CRITICAL FIX)
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (!session?.user) {
+        router.replace("/login");
+        return;
+      }
+
+      checkRole(session.user);
+    });
+
+    return () => {
+      mounted = false;
+      subscription.unsubscribe();
+    };
   }, [router, pathname]);
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <p className="text-gray-600 font-semibold">
-          Checking permissions...
+          Verifying access…
         </p>
       </div>
     );
