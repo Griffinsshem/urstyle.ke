@@ -42,7 +42,7 @@ export default function Header() {
 
         {/* Brand */}
         <Link href="/" className="flex items-center gap-3">
-          <ShoppingBag className="w-8 h-8 text-purple-600" />
+          <ShoppingBag className="w-8 h-8 text-purple-800" />
           <span className="text-2xl md:text-3xl font-extrabold bg-gradient-to-r 
                            from-purple-600 to-pink-500 bg-clip-text text-transparent">
             Urstyle.ke
