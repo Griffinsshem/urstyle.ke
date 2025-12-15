@@ -21,7 +21,7 @@ export default function RegisterPage() {
     setError(null);
 
     // 1️⃣ Create auth user
-    const { data, error: signUpError } = await supabase.auth.signUp({
+    const { error: signUpError } = await supabase.auth.signUp({
       email,
       password,
     });
@@ -32,20 +32,25 @@ export default function RegisterPage() {
       return;
     }
 
-    const user = data.user;
-    if (!user) {
-      setError("Registration failed. Please try again.");
+    // 2️⃣ GUARANTEE authenticated user context
+    const {
+      data: { user },
+      error: userError,
+    } = await supabase.auth.getUser();
+
+    if (userError || !user) {
+      setError("Unable to verify user session. Please try again.");
       setLoading(false);
       return;
     }
 
-    // 2️⃣ Insert profile (MATCH EXISTING COLUMNS)
+    // 3️⃣ Insert profile (matches existing columns)
     const { error: profileError } = await supabase
       .from("profiles")
       .insert({
         id: user.id,
-        email,
-        role,
+        email: user.email,
+        role: role,
       });
 
     if (profileError) {
@@ -54,12 +59,8 @@ export default function RegisterPage() {
       return;
     }
 
-    // 3️⃣ Redirect based on role
-    if (role === "admin") {
-      router.push("/admin");
-    } else {
-      router.push("/");
-    }
+    // 4️⃣ Redirect
+    router.push(role === "admin" ? "/admin/login" : "/login");
 
     setLoading(false);
   }
